@@ -5,6 +5,7 @@ use App\Http\Controllers\SppController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,16 @@ Route::middleware('auth:petugas')->group(function(){
         Route::get('/spp/edit/{id_spp}',[SppController::class, 'edit'])->name('spp.edit');
         Route::post('/spp/edit/{id_spp}',[SppController::class, 'update'])->name('spp.update');
         Route::delete('/spp/delete/{id_spp}',[SppController::class, 'destroy'])->name('spp.delete');
+
+        // Laporan
+        Route::get('/laporan',[PembayaranController::class, 'index'])->name('laporan');
+        Route::get('/laporan/create',[PembayaranController::class, 'create'])->name('laporan.create');
+        Route::post('/laporan/create',[PembayaranController::class, 'store'])->name('laporan.store');
+        Route::get('/laporan/siswa/{nisn}',[PembayaranController::class,'show'])->name('laporan.siswa');
+        Route::get('/laporan/cetak',[PembayaranController::class,'cetak'])->name('laporan.cetak');
+        Route::get('/laporan/cetak/siswa/{nisn}',[PembayaranController::class,'cetakSiswa'])->name('laporan.cetak.siswa');
+
+
 
 
     });

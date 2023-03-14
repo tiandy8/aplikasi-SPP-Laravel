@@ -20,4 +20,9 @@ class Siswa extends Model
         return $this->belongsTo(Kelas::class,'id_kelas');
     }
 
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
+
 }

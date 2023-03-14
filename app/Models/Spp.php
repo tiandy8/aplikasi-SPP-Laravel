@@ -11,4 +11,9 @@ class Spp extends Model
     protected $table = "spp";
     public $timestamps = false;
     protected $primaryKey = "id_spp";
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 }

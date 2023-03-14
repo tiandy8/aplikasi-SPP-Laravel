@@ -15,6 +15,9 @@ class Petugas extends Model
     public $timestamps = false;
     protected $primaryKey = "id_petugas";
 
-
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
 
 }

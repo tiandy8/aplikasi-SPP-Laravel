@@ -18,4 +18,6 @@ class Kelas extends Model
         return $this->hasMany(Siswa::class);
     }
 
+
+
 }

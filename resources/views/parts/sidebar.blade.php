@@ -38,8 +38,8 @@
       <i class="align-middle" data-feather="book"></i> <span class="align-middle">SPP</span>
     </a>
             </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
+            <li class="sidebar-item {{ Route::is('admin.laporan*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.laporan') }}">
       <i class="align-middle" data-feather="book"></i> <span class="align-middle">Laporan</span>
     </a>
             </li>
@@ -50,7 +50,7 @@
         <div class="sidebar-cta">
             <div class="sidebar-cta-content">
                 <div class="d-grid">
-                    <a href="upgrade-to-pro.html" class="btn btn-primary">+ Tambah Laporan</a>
+                    <a href="{{ route('admin.laporan.create') }}" class="btn btn-primary">+ Tambah Laporan</a>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@
                                 @method('DELETE')
                                 <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn-danger btn-sm btn">Hapus</button>
                             </form>
-                            <a href="#" class="btn-success btn-sm btn">History</a>
+                            <a href="{{ route('admin.laporan.siswa',$data->nisn) }}" class="btn-success btn-sm btn">History</a>
 
                         </div>
                     </td>
