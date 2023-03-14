@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
-use Auth;
+
 class SiswaController extends Controller
 {
 
@@ -41,7 +43,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Siswa";
+        $siswa = Siswa::paginate('10');
+        return view('pages.siswa.index',compact('title','siswa'));
     }
 
     /**
@@ -49,7 +53,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $kelas = Kelas::get();
+        $title = "Siswa Create";
+        return view('pages.siswa.create',compact('title','kelas'));
+
     }
 
     /**
@@ -57,7 +64,17 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $siswa = new Siswa;
+        $siswa->nisn = $request->nisn;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+        $siswa->alamat = $request->alamat;
+        $siswa->no_telp = $request->no_telp;
+        $siswa->password = bcrypt($request->password);
+        $siswa->save();
+
+        return redirect()->route('admin.siswa')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -71,25 +88,43 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(spp $spp)
+    public function edit($id)
     {
-        //
+        $kelas = Kelas::get();
+        $siswa = Siswa::find($id);
+        $title = "Siswa Edit";
+        return view('pages.siswa.edit',compact('title','siswa','kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, spp $spp)
+    public function update(Request $request, $id)
     {
-        //
+
+        $siswa = Siswa::find($id);
+        $siswa->nisn = $request->nisn;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+        $siswa->alamat = $request->alamat;
+        $siswa->no_telp = $request->no_telp;
+        if ($request->password) {
+            $siswa->password = bcrypt($request->password);
+        }
+        $siswa->update();
+
+        return redirect()->route('admin.siswa')->with('success','Data berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(spp $spp)
+    public function destroy( $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+        return back()->with('success','Data berhasil dihapus');
     }
 
 }

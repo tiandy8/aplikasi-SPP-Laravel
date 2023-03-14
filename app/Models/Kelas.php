@@ -13,4 +13,9 @@ class Kelas extends Model
     public $timestamps = false;
     protected $primaryKey = "id_kelas";
 
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
+
 }
