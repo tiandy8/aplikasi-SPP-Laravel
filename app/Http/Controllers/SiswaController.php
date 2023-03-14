@@ -4,9 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
-
+use Auth;
 class SiswaController extends Controller
 {
+
+    // Login
+    public function login()
+    {
+        $title = "Siswa";
+        return view('pages.login.siswa',compact('title'));
+    }
+    public function processLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'nisn' => 'required',
+            'password' => 'required',
+        ]);
+
+        if (Auth::guard('siswa')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('siswa.dashboard');
+        } else{
+            return redirect()->back()->with('error','NISN atau Password salah!');
+        }
+
+    }
+    // dashboard
+    public function dashboard()
+    {
+        $title = "Dashboard";
+        return view('pages.dashboard.siswa',compact('title'));
+    }
+
     /**
      * Display a listing of the resource.
      */
