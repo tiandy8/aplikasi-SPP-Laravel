@@ -20,8 +20,10 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect()->route('admin.dashboard');
+            if (Auth::guard('petugas')->check()) {
+                    return redirect()->route('admin.dashboard');
+            } elseif (Auth::guard('siswa')->check()){
+            return redirect()->route('siswa.dashboard',Auth::guard('siswa')->id());
             }
         }
 

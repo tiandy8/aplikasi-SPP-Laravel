@@ -16,6 +16,7 @@
                 <option value="admin">Admin</option>
                 <option value="petugas">Petugas</option>
             </select>
+            <input type="password" name="password" required placeholder="Password" class="form-control mb-3">
             <button class="btn btn-primary form-control">Save</button>
         </form>
 

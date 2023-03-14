@@ -31,11 +31,15 @@
                     <td>
                         <div class="d-flex gap-1">
                             <a href="{{ route('admin.petugas.edit',$data->id_petugas) }}" class="btn-warning btn-sm btn">Edit</a>
-                            <form action="{{ route('admin.petugas.delete',$data->id_petugas) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn-danger btn-sm btn">Hapus</button>
-                            </form>
+                            @if (Auth::id() == $data->id_petugas)
+
+                            @else
+                                <form action="{{ route('admin.petugas.delete',$data->id_petugas) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn-danger btn-sm btn">Hapus</button>
+                                </form>
+                            @endif
 
                         </div>
                     </td>

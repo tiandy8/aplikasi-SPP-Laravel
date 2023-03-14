@@ -20,4 +20,10 @@ class Petugas extends Model
         return $this->hasMany(Pembayaran::class);
     }
 
+    public function getLevel($level)
+    {
+        $currentLevel = $this->level;
+        return $currentLevel == $level;
+    }
+
 }

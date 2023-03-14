@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -25,17 +26,22 @@ class SiswaController extends Controller
 
         if (Auth::guard('siswa')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('siswa.dashboard');
+
+            $getNisn = Auth::guard('siswa')->id();
+
+            return redirect()->route('siswa.dashboard',$getNisn);
+
         } else{
             return redirect()->back()->with('error','NISN atau Password salah!');
         }
 
     }
     // dashboard
-    public function dashboard()
+    public function dashboard($id)
     {
-        $title = "Dashboard";
-        return view('pages.dashboard.siswa',compact('title'));
+        $siswa = Siswa::find($id);
+        $pembayaran = Pembayaran::where('nisn',$id)->get();
+        return view('pages.dashboard.siswa',compact('siswa','pembayaran'));
     }
 
     /**

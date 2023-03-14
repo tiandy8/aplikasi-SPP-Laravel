@@ -5,9 +5,11 @@
     <div class="card-body">
         <div class="d-flex mb-3">
             <h1 class="h3 me-auto "><strong>Laporan</strong></h1>
-            <div class="">
-                <a href="{{ route('admin.laporan.cetak') }}" target="_blank" class="btn-warning btn">Generate Laporan</a>
-            </div>
+            @if (Auth::user()->getLevel('admin'))
+                <div class="">
+                    <a href="{{ route('admin.laporan.cetak') }}" target="_blank" class="btn-warning btn">Generate Laporan</a>
+                </div>
+            @endif
         </div>
 
         <table class="table">

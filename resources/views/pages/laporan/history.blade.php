@@ -5,9 +5,12 @@
     <div class="card-body">
         <div class="d-flex mb-3">
             <h1 class="h3 me-auto "><strong>Histori Pembayaran</strong> {{ $siswa->nama }}</h1>
+            @if (Auth::user()->getLevel('admin'))
+
             <div class="">
                 <a href="{{ route('admin.laporan.cetak.siswa',$siswa->nisn) }}" class="btn-warning btn">Generate Laporan</a>
             </div>
+            @endif
         </div>
 
         <table class="table">

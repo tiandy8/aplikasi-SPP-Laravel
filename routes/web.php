@@ -36,12 +36,14 @@ Route::middleware('guest:siswa,petugas')->group(function () {
 // Route untuk logout petugas maupun siswa
 Route::get('/logout',[PetugasController::class, 'logout'])->name('logout');
 
-
 // Route untuk middleware petugas
 Route::middleware('auth:petugas')->group(function(){
     Route::prefix('admin')->name('admin.')->group(function(){
         // Route Dashboard
         Route::get('/dashboard',[PetugasController::class, 'dashboard'])->name('dashboard');
+
+
+
 
         // Route CRUD Siswa
         Route::get('/siswa',[SiswaController::class, 'index'])->name('siswa');
