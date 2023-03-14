@@ -52,7 +52,9 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        //
+        $petugas = Petugas::paginate('10');
+        $title = "Petugas";
+        return view('pages.petugas.index',compact('petugas','title'));
     }
 
     /**
@@ -60,7 +62,8 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Create Petugas";
+        return view('pages.petugas.create',compact('title'));
     }
 
     /**
@@ -68,7 +71,13 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $petugas = new Petugas;
+        $petugas->username = $request->username;
+        $petugas->nama_petugas = $request->nama_petugas;
+        $petugas->level = $request->level ;
+        $petugas->password = bcrypt($request->password);
+        $petugas->save();
+        return redirect()->route('admin.petugas')->with('success','berhasil menambah data');
     }
 
     /**
@@ -82,24 +91,38 @@ class PetugasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Petugas $petugas)
+    public function edit($id)
     {
-        //
+        $petugas = Petugas::find($id);
+        $title = "Edit Petugas";
+        return view('pages.petugas.edit',compact('petugas','title'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Petugas $petugas)
+    public function update(Request $request, $id)
     {
-        //
+        $petugas = Petugas::find($id);
+        $petugas->username = $request->username;
+        $petugas->nama_petugas = $request->nama_petugas;
+        $petugas->level = $request->level ;
+        if ($request->password) {
+            $petugas->password = bcrypt($request->password);
+        }
+        $petugas->update();
+        return redirect()->route('admin.petugas')->with('success','berhasil update data');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Petugas $petugas)
+    public function destroy($id)
     {
-        //
+        $petugas = Petugas::find($id);
+        $petugas->delete();
+        return redirect()->route('admin.petugas')->with('success','berhasil hapus data');
+
     }
 }
