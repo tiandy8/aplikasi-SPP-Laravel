@@ -12,7 +12,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = Kelas::paginate('10');
+        $title = "Kelas";
+        return view('pages.kelas.index',compact('title','kelas'));
     }
 
     /**
@@ -20,7 +22,8 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Kelas Create";
+        return view('pages.kelas.create',compact('title'));
     }
 
     /**
@@ -28,7 +31,11 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kelas = new Kelas;
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->kompetensi_keahlian = $request->kompetensi_keahlian;
+        $kelas->save();
+        return redirect()->route('admin.kelas')->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -42,24 +49,32 @@ class KelasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $title = "Kelas Edit";
+        return view('pages.kelas.edit',compact('title','kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request,  $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->kompetensi_keahlian = $request->kompetensi_keahlian;
+        $kelas->update();
+        return redirect()->route('admin.kelas')->with('success','Data berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy( $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $kelas->delete();
+        return redirect()->back()->with('success','Data berhasil dihapus');
     }
 }

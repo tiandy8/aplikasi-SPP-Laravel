@@ -9,32 +9,32 @@
                 Halaman
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item {{ Route::is('admin.dashboard*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
       <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
     </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
+            <li class="sidebar-item {{ Route::is('admin.siswa*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.siswa') }}">
       <i class="align-middle" data-feather="user"></i> <span class="align-middle">Siswa</span>
     </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-in.html">
+            <li class="sidebar-item {{ Route::is('admin.kelas*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.kelas') }}">
       <i class="align-middle" data-feather="home"></i> <span class="align-middle">Kelas</span>
     </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-up.html">
+            <li class="sidebar-item {{ Route::is('admin.petugas*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.petugas') }}">
       <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Petugas</span>
     </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
+            <li class="sidebar-item {{ Route::is('admin.spp*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.spp') }}">
       <i class="align-middle" data-feather="book"></i> <span class="align-middle">SPP</span>
     </a>
             </li>
