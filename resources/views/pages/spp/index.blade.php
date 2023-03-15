@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table" id="myTable">
            <thead>
                 <tr>
                     <th>No.</th>
@@ -19,8 +19,9 @@
                     <th>Aksi</th>
                 </tr>
            </thead>
+           <tbody>
+
           @foreach ($spp as $data )
-            <tbody>
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->tahun }}</td>
@@ -38,9 +39,11 @@
                         </div>
                     </td>
                 </tr>
-            </tbody>
           @endforeach
+        </tbody>
         </table>
+
+
     </div>
 </div>
 

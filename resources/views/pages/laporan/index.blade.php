@@ -12,7 +12,7 @@
             @endif
         </div>
 
-        <table class="table">
+        <table class="table" id="myTable">
            <thead>
                 <tr>
                     <th>No.</th>
@@ -25,21 +25,22 @@
                     <th>Tahun</th>
                 </tr>
            </thead>
+           <tbody>
           @foreach ($pembayaran as $data )
-            <tbody>
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->petugas->nama_petugas }}</td>
                     <td>{{ $data->siswa->nama }}</td>
                     <td>{{ $data->tgl_bayar }}</td>
                     <td>Rp. {{ number_format($data->jumlah_bayar) }}</td>
-                    <td>Rp. {{ number_format($data->spp->nominal) }} - {{ $data->spp->tahun }}</td>
+                    <td>Rp. {{ number_format($data->spp->nominal ?? 0 )  }} - {{ $data->spp->tahun ?? '' }}</td>
                     <td>{{ $data->bulan_bayar }}</td>
                     <td>{{ $data->tahun_dibayar }}</td>
-
                 </tr>
-            </tbody>
+
           @endforeach
+        </tbody>
+
         </table>
     </div>
 </div>

@@ -42,6 +42,15 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123'),
         ]);
 
+        DB::table('pembayaran')->insert([
+            'nisn' => "1111111111",
+            'id_petugas' => '1',
+            'id_spp' => '1',
+            'tahun_dibayar' => '2023',
+            'tgl_bayar' => '2023-01-01',
+            'bulan_bayar' => 'januari',
+            'jumlah_bayar' => '1000',
+        ]);
 
     }
 }

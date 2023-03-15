@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id('id_pembayaran');
-            $table->foreignId('id_petugas');
-            $table->foreignId('id_spp');
+            $table->foreignId('id_petugas')->index();
+            $table->foreignId('id_spp')->index();
             $table->char('nisn',10)->index();
             $table->date('tgl_bayar');
             $table->string('bulan_bayar');

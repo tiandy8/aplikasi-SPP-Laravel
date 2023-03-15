@@ -12,7 +12,7 @@ class SppController extends Controller
      */
     public function index()
     {
-        $spp = Spp::paginate(10);
+        $spp = Spp::get();
         $title ="SPP";
         return view('pages.spp.index',compact('spp','title'));
     }
