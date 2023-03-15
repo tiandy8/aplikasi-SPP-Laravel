@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->string('tahun_dibayar',4);
             $table->integer('jumlah_bayar');
         });
+
+        DB::unprepared("CREATE TRIGGER ins_pembayaran AFTER INSERT ON pembayaran FOR EACH ROW INSERT INTO logs (pesan,tanggal) VALUES ('Tambah data coy',NOW())");
     }
 
     /**
